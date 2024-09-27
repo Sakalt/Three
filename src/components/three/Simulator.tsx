@@ -28,9 +28,9 @@ export const Simulator: FC = () => {
 // ========================================================
 const Collisions: FC = () => {
 	// back
-	usePlane(() => ({ position: [0, 0, -1], rotation: [0, 0, 0] }))
+	usePlane(() => ({ position: [0, 0, -0.3], rotation: [0, 0, 0] }))
 	// front
-	usePlane(() => ({ position: [0, 0, 5], rotation: [0, -Math.PI, 0] }))
+	usePlane(() => ({ position: [0, 0, 4], rotation: [0, -Math.E, 0] }))
 	// // bottom
 	// usePlane(() => ({ position: [0, -4, 0], rotation: [-Math.PI / 2, 0, 0] }))
 	// // top
@@ -41,7 +41,7 @@ const Collisions: FC = () => {
 	useFrame(({ mouse, viewport }) => {
 		const x = (mouse.x * viewport.width) / 2
 		const y = (mouse.y * viewport.height) / 2
-		api.position.set(x, y, 1.5)
+		api.position.set(x, y, 1.2)
 	})
 
 	return null
@@ -53,8 +53,8 @@ const PhysicalSphere: FC<{ data: Data }> = ({ data }) => {
 
 	const [ref, api] = useSphere(() => ({
 		mass: 1,
-		angularDamping: 0.1,
-		linearDamping: 0.95,
+		angularDamping: 0.4,
+		linearDamping: 0.67,
 		fixedRotation: true,
 		args: [scale],
 		position: data.position.toArray()
